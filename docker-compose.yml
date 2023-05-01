@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  rust-server:
+    container_name: steamcmd
+    build: .
+    ports:
+      - 28015:28015
+      - 28016:28016
+      - 28083:28083
+    volumes:
+      - ./steamcmd:/steamcmd
+    command: /bin/bash -c ./start.sh
