@@ -3,13 +3,6 @@ FROM ubuntu:latest
 
 ### https://github.com/steamcmd/docker/blob/master/dockerfiles/ubuntu-22/Dockerfile
 
-# Set environment variables
-ENV USER root
-ENV HOME /root
-
-# Set working directory
-WORKDIR $HOME
-
 # Insert Steam prompt answers
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN echo steam steam/question select "I AGREE" | debconf-set-selections \
@@ -17,33 +10,34 @@ RUN echo steam steam/question select "I AGREE" | debconf-set-selections \
 
 # Update the repository and install SteamCMD
 ARG DEBIAN_FRONTEND=noninteractive
-RUN dpkg --add-architecture i386 \
+
+RUN apt-get update -y \
+    && apt install -y software-properties-common \
+    && add-apt-repository multiverse \
+    && dpkg --add-architecture i386 \
     && apt-get update -y \
-    && apt-get install -y --no-install-recommends ca-certificates locales steamcmd sqlite3 \
+    && apt-get install -y lib32gcc-s1 steamcmd \
     && rm -rf /var/lib/apt/lists/*
 
 # Add unicode support
-RUN locale-gen en_US.UTF-8
 ENV LANG 'en_US.UTF-8'
 ENV LANGUAGE 'en_US:en'
 
-# Create symlink for executable
-RUN ln -s /usr/games/steamcmd /usr/bin/steamcmd
-
 # Update SteamCMD and install Rust
-RUN steamcmd \
-    +force_install_dir /steamcmd/rust \
-    +login anonymous \
-    +quit
+# RUN /usr/games/steamcmd \
+#     +force_install_dir /steamcmd/rust \
+#     +login anonymous \
+#     +app_update 258550 \
+#     +quit
 
 ###
 
-COPY ./steamcmd /steamcmd
 COPY ./check-update.sh ./check-update.sh
 COPY ./start.sh ./start.sh
 
 EXPOSE 28015
 EXPOSE 28016
+EXPOSE 28082
 EXPOSE 28083
 
 RUN ./check-update.sh

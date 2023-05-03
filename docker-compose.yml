@@ -1,12 +1,20 @@
 version: "3.9"
 services:
-  rust-server:
-    container_name: steamcmd
+  rust:
     build: .
     ports:
       - 28015:28015
+      - 28015:28015/udp
       - 28016:28016
+      - 28082:28082
       - 28083:28083
     volumes:
       - ./steamcmd:/steamcmd
     command: /bin/bash -c ./start.sh
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+volumes:
+  steamcmd:
+
