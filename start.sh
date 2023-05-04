@@ -5,22 +5,20 @@ cd steamcmd/rust
 echo "Starting Rust.."
 
 ./RustDedicated -batchmode +server.secure 1 \
-  +server.ip 0.0.0.0 \
-  +server.port 28015 \
-  +rcon.ip 0.0.0.0 \
-  +rcon.port 28016 \
-  +rcon.web 1 \
-  +rcon.password "12341234" \
-  +server.maxplayers 100 \
-  +server.hostname "[MIDWEST] Vanilla SOLO ONLY" \
-  +server.identity "$(whoami)" \
-  +server.level "Procedural Map" \
-  +server.seed 42069 \
-  +server.worldsize 3500 \
-  +server.saveinterval 300 \
-  +server.globalchat true \
-  +server.description "SOLO ONLY!!" \
-  +server.headerimage "https://placehold.it/512x256" \
-  +server.url "https://pornhub.com" \
-#  -logfile "rust-$(date -I).log"
-
+  +server.ip $RUST_SERVER_IP \
+  +server.port $RUST_SERVER_PORT \
+  +rcon.web $RUST_RCON_WEB \
+  +rcon.ip $RUST_RCON_IP \
+  +rcon.port $RUST_RCON_PORT \
+  +rcon.password $RUST_RCON_PASSWORD \
+  +server.maxplayers $RUST_SERVER_MAXPLAYERS \
+  +server.hostname $RUST_SERVER_HOSTNAME \
+  +server.identity $(whoami) \
+  +server.level $RUST_SERVER_LEVEL \
+  +server.seed $RUST_SERVER_SEED \
+  +server.worldsize $RUST_SERVER_WORLDSIZE \
+  +server.saveinterval $RUST_SERVER_SAVEINTERVAL \
+  +server.description $RUST_SERVER_DESCRIPTION \
+  +server.headerimage $RUST_SERVER_HEADERIMAGE \
+  +server.url $RUST_SERVER_URL
+  -logfile "log-$(date -I).log"
