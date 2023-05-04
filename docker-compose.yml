@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   rust:
+    container_name: rust
     build: .
     ports:
       - 28015:28015
