@@ -6,7 +6,6 @@ services:
       - 28015:28015
       - 28015:28015/udp
       - 28016:28016
-      - 28082:28082
       - 28083:28083
     volumes:
       - ./steamcmd:/steamcmd
@@ -30,4 +29,3 @@ services:
 
 volumes:
   steamcmd:
-

@@ -53,7 +53,6 @@ COPY ./bin ./bin
 
 EXPOSE 28015
 EXPOSE 28016
-EXPOSE 28082
 EXPOSE 28083
 
 RUN ./bin/check-update.sh
