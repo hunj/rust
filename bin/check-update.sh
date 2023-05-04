@@ -8,5 +8,7 @@ if [ $BUILD_ID -ne $NEW_BUILD_ID ]
 then
     echo "Updating Rust..."
     steamcmd +login anonymous +force_install_dir /steamcmd/rust +app_update 258550 +quit
+    echo "Update Complete!"
+else
+    echo "No need update!"
 fi
-echo "done"

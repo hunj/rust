@@ -10,7 +10,7 @@ services:
       - 28083:28083
     volumes:
       - ./steamcmd:/steamcmd
-    command: /bin/bash -c ./start.sh
+    command: /bin/bash -c ./bin/start.sh
     stdin_open: true
     tty: true
     restart: unless-stopped

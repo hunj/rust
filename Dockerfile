@@ -49,13 +49,12 @@ ARG RUST_SERVER_DESCRIPTION
 ARG RUST_SERVER_HEADERIMAGE
 ARG RUST_SERVER_URL
 
-COPY ./check-update.sh ./check-update.sh
-COPY ./start.sh ./start.sh
+COPY ./bin ./bin
 
 EXPOSE 28015
 EXPOSE 28016
 EXPOSE 28082
 EXPOSE 28083
 
-RUN ./check-update.sh
-CMD ./start.sh
+RUN ./bin/check-update.sh
+CMD ./bin/start.sh
