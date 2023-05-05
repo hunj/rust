@@ -55,5 +55,8 @@ EXPOSE 28015
 EXPOSE 28016
 EXPOSE 28083
 
-RUN ./bin/check-update.sh
+RUN ["mkdir", "-p", "/steamcmd/rust/"]
+RUN ["touch", "/steamcmd/rust/build.id"]
+RUN ["ln", "-s", "/usr/games/steamcmd", "/usr/bin/steamcmd"]
+
 CMD ./bin/start.sh
