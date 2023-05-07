@@ -32,6 +32,7 @@ echo "Starting Rust.."
   +rcon.ip $RUST_RCON_IP \
   +rcon.port $RUST_RCON_PORT \
   +rcon.password $RUST_RCON_PASSWORD \
+  +server.queryport $RUST_SERVER_QUERYPORT \
   +server.maxplayers $RUST_SERVER_MAXPLAYERS \
   +server.hostname "$RUST_SERVER_HOSTNAME" \
   +server.identity $(whoami) \
@@ -41,4 +42,5 @@ echo "Starting Rust.."
   +server.saveinterval $RUST_SERVER_SAVEINTERVAL \
   +server.description "$RUST_SERVER_DESCRIPTION" \
   +server.headerimage "$RUST_SERVER_HEADERIMAGE" \
-  +server.url "$RUST_SERVER_URL"
+  +server.url "$RUST_SERVER_URL" \
+  -logfile "logs/$(date -I).log"
